@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     implementation(gradleApi())
-    implementation("com.squareup.okhttp3:okhttp:4.7.2")
+    implementation("com.squareup.okhttp3:okhttp:4.9.1")
 }
 
 publishing {
