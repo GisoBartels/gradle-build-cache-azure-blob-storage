@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.io.ByteArrayOutputStream
 
 plugins {
     kotlin("jvm") version "1.3.72"
@@ -26,9 +27,25 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "dev.giso"
             artifactId = "gradle-build-cache-azure-blob-storage"
-            version = "1.0"
+            version = gitVersion
 
             from(components["java"])
         }
+    }
+}
+
+val gitVersion: String
+    get() = exec("git", "describe", "--tags", "--match", "v*", "--dirty", "--always")
+
+fun exec(vararg commandLine: String): String = ByteArrayOutputStream().also { output ->
+    exec {
+        commandLine(*commandLine)
+        standardOutput = output
+    }
+}.toString().trim()
+
+tasks.register("currentVersion") {
+    doLast {
+        println("Current version: $gitVersion")
     }
 }
