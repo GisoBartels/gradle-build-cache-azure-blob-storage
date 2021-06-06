@@ -1,3 +1,6 @@
+[![Release](https://jitpack.io/v/dev.giso/gradle-build-cache-azure-blob-storage.svg?style=flat-square)](https://jitpack.io/#dev.giso/gradle-build-cache-azure-blob-storage)
+[![License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0)
+
 # Gradle Remote Build Cache Plugin for Azure Blob Storage
 A plugin for using an Azure Blob Storage as remote build cache.
 
