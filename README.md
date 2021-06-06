@@ -26,4 +26,8 @@ buildCache {
     }
 }
 ```
- 
+
+## Debugging
+To test and debug integration with your blob storage, you can use the
+[AzureBlobStorageBuildCacheServiceIntegrationTest](src/test/kotlin/dev/giso/gradle/buildcache/azureblobstorage/AzureBlobStorageBuildCacheServiceIntegrationTest.kt).\
+Just insert the URL of your blob storage there.
