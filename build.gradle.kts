@@ -9,9 +9,16 @@ repositories {
     mavenCentral()
 }
 
+tasks.test {
+    useJUnitPlatform()
+}
+
 dependencies {
     implementation(gradleApi())
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
 publishing {
