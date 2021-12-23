@@ -1,0 +1,45 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+
+env:
+  BLOB_STORAGE_URL: ${{ secrets.BLOB_STORAGE_URL }}
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+      - name: set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: adopt
+          java-version: 11
+      - name: Cache Gradle wrapper
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/wrapper
+          key: gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches/modules-2
+          key: gradle-artifact-cache-${{ hashFiles('**/*.gradle*', 'buildSrc/src/main/Dependencies.kt', 'buildSrc/src/main/Version.kt') }}
+          restore-keys: gradle-artifact-cache-
+      - name: Build
+        run: ./gradlew build
+      - name: Zip build reports
+        if: always()
+        run: |
+          shopt -s globstar
+          zip buildreports.zip ./**/build/reports/**
+      - name: Upload build reports
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: 'Build Reports'
+          path: buildreports.zip

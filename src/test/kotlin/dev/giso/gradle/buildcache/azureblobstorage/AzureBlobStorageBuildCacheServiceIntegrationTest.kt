@@ -11,7 +11,9 @@ import java.io.OutputStream
 
 internal class AzureBlobStorageBuildCacheServiceIntegrationTest {
 
-    private val config = AzureBlobStorageBuildCache().apply { url = error("Insert your blob storage URL here") }
+    private val config = AzureBlobStorageBuildCache().apply {
+        url = System.getenv("BLOB_STORAGE_URL") ?: error("Environment variable BLOB_STORAGE_URL is not set")
+    }
 
     private val service = AzureBlobStorageBuildCacheService(config, OkHttpClient())
 
