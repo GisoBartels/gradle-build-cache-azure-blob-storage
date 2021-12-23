@@ -34,7 +34,7 @@ publishing {
 }
 
 val gitVersion: String
-    get() = exec("git", "describe", "--tags", "--match", "v*", "--dirty", "--always")
+    get() = exec("git", "describe", "--tags", "--match", "[0-9].[0-9]*", "--dirty", "--always")
 
 fun exec(vararg commandLine: String): String = ByteArrayOutputStream().also { output ->
     exec {
