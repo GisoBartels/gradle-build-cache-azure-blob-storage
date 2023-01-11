@@ -17,7 +17,7 @@ dependencies {
     implementation(gradleApi())
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
